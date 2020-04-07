@@ -10,12 +10,9 @@ RSpec.describe User, type: :model do
         password: "neatpass",
         password_confirmation: "neatpass")
     }
-
-
-
     it "is valid with valid attributes" do
       expect(subject).to be_valid
-      p subject
+      # p subject
     end
 
     it "is not valid without a first_name" do
@@ -64,9 +61,46 @@ RSpec.describe User, type: :model do
 
     it "is not valid without a password under 8 chars" do
       subject.password = "neatpa"
+      subject.password_confirmation = "neatpa"
       expect(subject).to_not be_valid
-      expect(subject.errors.full_messages).to include("Password can't be blank")
+      expect(subject.errors.full_messages).to include("Password is too short (minimum is 8 characters)")
     end
 
+  end
+
+  describe '.authenticate_with_credentials' do
+    before(:each) do
+      described_class.create(
+        first_name: "richard",
+        last_name: "neat",
+        email: "neato@gmail.com",
+        password: "neatpass",
+        password_confirmation: "neatpass")
+    end
+
+    it "is valid with valid attributes" do
+      input = described_class.authenticate_with_credentials("neato@gmail.com", "neatpass")
+      expect(input).to_not be_nil
+    end
+    
+    it "is returns nil with wrong credentials" do
+      input = described_class.authenticate_with_credentials("NOTneato@gmail.com", "NOTneatpass")
+      expect(input).to be_nil
+    end
+    
+    it "is returns nil with wrong credentials" do
+      input = described_class.authenticate_with_credentials("neato@gmail.com", "NOTneatpass")
+      expect(input).to be_nil
+    end
+
+    it "is returns user with spaces" do
+      input = described_class.authenticate_with_credentials("  neato@gmail.com        ", "neatpass")
+      expect(input).to be_nil
+    end
+
+    it "is returns user with wrong case" do
+      input = described_class.authenticate_with_credentials("NEATO@gmail.com", "neatpass")
+      expect(input).to be_nil
+    end
   end
 end
