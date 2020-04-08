@@ -20,18 +20,18 @@ RSpec.feature "Visitor navigates to home page, and clicks on a product to view d
   scenario "They see all products, then product details" do
     # ACT
     visit root_path
-    # click_on "details" .click_on 'Details »'
-    # first('article').find('a.pull-right').click
-    first('article').click_on 'Details »'
+    within('.navbar-right') {
+      expect(page).to have_text 'My Cart (0)'
+    }
+    first('article').click_on 'Add'
     sleep(1)
     # DEBUG 
     save_screenshot
 
     # VERIFY
-    expect(page).to have_css 'section.products-show', count: 1
-    within('section.products-show') {
-      expect(page).to have_css 'img.main-img'
-      expect(page).to have_css 'article.product-detail'
+    within('.navbar-right') {
+      expect(page).to have_text 'My Cart (1)'
     }
   end
+
 end
