@@ -1,12 +1,36 @@
 <h1>Signup!</h1>
 
-<%= form_for :user, url: '/users' do |f| %>
-
-First Name: <%= f.text_field :first_name %>
-Last Name: <%= f.text_field :last_name %>
-Email: <%= f.text_field :email %>
-Password: <%= f.password_field :password %>
-Password Confirmation: <%= f.password_field :password_confirmation %>
-<%= f.submit "Submit" %>
+<%= form_for :user, url: '/users', html: {class: 'form-horizontal'} do |f| %>
+<div class='form-group'>
+  <%= label_tag (:first_name), nil, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name' %>
+  </div>
+  <%= label_tag (:last_name), nil, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name' %>
+  </div>
+</div>
+<div class='form-group'>
+  <%= label_tag (:email), nil, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
+  </div>
+</div>
+<div class='form-group'>
+  <%= label_tag (:password), nil, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.text_field :password, class: 'form-control', placeholder: 'Password' %>
+  </div>
+  <%= label_tag (:password_confirmation), nil, class: "col-sm-2 control-label" %>
+  <div class="col-sm-10">
+    <%= f.text_field :password_confirmation, class: 'form-control', placeholder: 'Enter Your Password Again' %>
+  </div>
+</div>
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+    <%= f.submit 'Submit', class: "btn btn-default" %>
+  </div>
+</div>
 
 <% end %>
