@@ -2,6 +2,10 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+![Main Page](docs/main_page.jpg)
+![Main Page](docs/admin_products.jpg)
+
+Made to simulate an older website that we are taking over, to learn how to interpret legacy code, and to implement features properly.
 
 ## Setup
 
@@ -12,7 +16,7 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 5. Create .env file based on .env.example
 6. Sign up for a Stripe account
 7. Put Stripe (test) keys into appropriate .env vars
-8. Run `bin/rails s -b 0.0.0.0` to start the server
+8. Run `bin/rails s -b 0.0.0.0` to start the server (ran inside of a vagrant machine to properly forword the needed ports.)
 
 ## Stripe Testing
 
@@ -22,6 +26,6 @@ More information in their docs: <https://stripe.com/docs/testing#cards>
 
 ## Dependencies
 
-* Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
-* PostgreSQL 9.x
-* Stripe
+- Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
+- PostgreSQL 9.x
+- Stripe
